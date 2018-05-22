@@ -3,18 +3,17 @@ package br.com.activemq.dto;
 import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 
-public class ActiveMqMessageDTO implements Serializable {
+public class MessageDTO implements Serializable {
 
     private static final long serialVersionUID = -295422703255886286L;
 
-    @NotNull
     private String message;
 
-    public ActiveMqMessageDTO() {
+    public MessageDTO() {
 
     }
 
-    public ActiveMqMessageDTO(String message) {
+    public MessageDTO(String message) {
         this.message = message;
     }
 
@@ -25,14 +24,4 @@ public class ActiveMqMessageDTO implements Serializable {
     public void setMessage(String message) {
         this.message = message;
     }
-
-    @Override
-    public String toString() {
-        return "ActiveMqMessageDTO{" +
-            "message='" + message + '\'' +
-            '}';
-    }
-
 }
-
-

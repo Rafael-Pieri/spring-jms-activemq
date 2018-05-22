@@ -1,4 +1,17 @@
+spring:
+  application:
+    name: spring-jms-activemq
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:mysql://localhost:3306/activemqDB?createDatabaseIfNotExist=true&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
 activemq:
   broker-url: tcp://localhost:61616
   queue:
-    helloworld: helloworld.q
+    name: helloworld.queue

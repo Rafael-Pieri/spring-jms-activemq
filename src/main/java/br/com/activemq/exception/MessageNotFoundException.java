@@ -3,10 +3,10 @@ package br.com.activemq.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-public class ActiveMqException extends RuntimeException {
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class MessageNotFoundException extends RuntimeException {
 
-    public ActiveMqException(String message) {
+    public MessageNotFoundException(String message) {
         super(message);
     }
 }

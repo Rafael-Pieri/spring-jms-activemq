@@ -4,6 +4,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ErrorMessageDTO {
@@ -20,15 +21,15 @@ public class ErrorMessageDTO {
 
     public ErrorMessageDTO(String message, String error) {
         this.message = message;
-        this.errors = Arrays.asList(error);
-    }
-
-    public ErrorMessageDTO(String message) {
-        this.message = message;
+        this.errors = Collections.singletonList(error);
     }
 
     public ErrorMessageDTO() {
 
+    }
+
+    public ErrorMessageDTO(String message) {
+        this.message = message;
     }
 
     public String getMessage() {
@@ -47,5 +48,3 @@ public class ErrorMessageDTO {
         this.errors = errors;
     }
 }
-
-
