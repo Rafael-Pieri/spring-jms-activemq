@@ -1,4 +1,4 @@
 FROM openjdk:8-jdk-alpine
-ADD build/libs/spring-jms-activemq-0.0.1-SNAPSHOT.jar spring-jms-activemq.jar
+ADD build/libs/*.jar app.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "spring-jms-activemq.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]

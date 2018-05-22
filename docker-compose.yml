@@ -1,6 +1,6 @@
 version: '2'
 services:
-  activemq-service:
+  activemq:
     image: webcenter/activemq:latest
     ports:
       - 8161:8161
@@ -14,19 +14,19 @@ services:
     volumes:
       - /container_data/activemq/data:/data/activemq
       - /container_data/activemq/log:/var/log/activemq
-  mysql-database:
+  mysql:
     image: mysql:latest
     environment:
       - MYSQL_ROOT_PASSWORD=root
     ports:
       - 3306:3306
   app:
-    image: spring-jms-active/openjdk-8:latest
+    image: rafaelpieri/openjdk-8:latest
     ports:
       - 8080:8080
     depends_on:
-      - activemq-service
-      - mysql-database
+      - activemq
+      - mysql
     environment:
-      - MYSQL_HOST=mysql-database
-      - ACTIVEMQ_HOST=activemq-service
+      - MYSQL_HOST=mysql
+      - ACTIVEMQ_HOST=activemq
