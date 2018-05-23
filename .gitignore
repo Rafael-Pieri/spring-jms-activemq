@@ -9,3 +9,9 @@ src/test/test.iml
 
 .idea/
 .gradle/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
