@@ -1,6 +1,6 @@
 spring:
   application:
-    name: spring-jms-activemq'
+    name: spring-jms-activemq
   h2:
     console:
       enabled: true
@@ -31,7 +31,7 @@ swagger:
 ---
 
 spring:
-  profiles: prod
+  profiles: production
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect
     hibernate:
