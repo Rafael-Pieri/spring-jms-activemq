@@ -21,7 +21,7 @@ services:
     ports:
       - 3306:3306
   app:
-    image: rafaelpieri/openjdk-8:latest
+    image: rafaelpieri/springjms-activemq:latest
     ports:
       - 8080:8080
     depends_on:
