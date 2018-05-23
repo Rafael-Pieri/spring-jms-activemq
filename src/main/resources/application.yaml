@@ -26,8 +26,6 @@ activemq:
 swagger:
   title: Spring JMS with ActiveMQ
   description: The application uses Spring JMS template to publish and consume messages from ActiveMQ.
-  contact:
-    name: Rafael De Pieri Barbosa
   version: 0.0.1
 
 ---

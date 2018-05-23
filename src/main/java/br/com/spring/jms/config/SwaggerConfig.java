@@ -27,9 +27,6 @@ public class SwaggerConfig {
     @Value("${swagger.description}")
     private String description;
 
-    @Value("${swagger.contact.name}")
-    private String contactName;
-
     @Value("${swagger.version}")
     private String version;
 
@@ -50,7 +47,6 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title(title).description(description)
-            .contact(new Contact(contactName, null, null))
             .version(version)
             .build();
     }
