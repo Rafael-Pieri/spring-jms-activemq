@@ -1,27 +1,29 @@
 package br.com.spring.jms.dto;
 
 import java.io.Serializable;
-import javax.validation.constraints.NotNull;
 
 public class MessageDTO implements Serializable {
 
     private static final long serialVersionUID = -295422703255886286L;
 
-    private String message;
+    private Long id;
 
-    public MessageDTO() {
+    public MessageDTO() {}
 
+    public MessageDTO(Long id) {
+        this.id = id;
     }
 
-    public MessageDTO(String message) {
-        this.message = message;
+    public Long getId() {
+        return id;
     }
 
-    public String getMessage() {
-        return message;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    @Override
+    public String toString() {
+        return "MessageDTO{id = " + id + "}";
     }
 }

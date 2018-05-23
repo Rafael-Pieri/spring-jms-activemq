@@ -21,6 +21,10 @@ public class Message {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     private ZonedDateTime createdAt = ZonedDateTime.now(ZoneOffset.UTC);
 
+    @Type(type = "org.hibernate.type.ZonedDateTimeType")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+    private ZonedDateTime receivedAt;
+
     public Message() {}
 
     public Message(String description) {
@@ -49,5 +53,13 @@ public class Message {
 
     public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public ZonedDateTime getReceivedAt() {
+        return receivedAt;
+    }
+
+    public void setReceivedAt(ZonedDateTime receivedAt) {
+        this.receivedAt = receivedAt;
     }
 }

@@ -1,6 +1,6 @@
 package br.com.spring.jms.controller;
 
-import br.com.spring.jms.dto.MessageDTO;
+import br.com.spring.jms.dto.MessagePostDTO;
 import br.com.spring.jms.model.Message;
 import br.com.spring.jms.service.ActiveMqService;
 import java.util.Collection;
@@ -29,8 +29,8 @@ public class ActiveMqController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public void sendMessage(@Valid @RequestBody MessageDTO messageDTO) {
-        activeMqService.sendMessage(messageDTO);
+    public void send(@Valid @RequestBody MessagePostDTO messagePostDTO) {
+        activeMqService.send(messagePostDTO);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
