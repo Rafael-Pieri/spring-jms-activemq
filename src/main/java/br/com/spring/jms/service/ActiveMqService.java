@@ -1,10 +1,10 @@
-package br.com.activemq.service;
+package br.com.spring.jms.service;
 
-import br.com.activemq.dto.MessageDTO;
-import br.com.activemq.exception.ActiveMqException;
-import br.com.activemq.exception.MessageNotFoundException;
-import br.com.activemq.model.Message;
-import br.com.activemq.repository.MessageRepository;
+import br.com.spring.jms.dto.MessageDTO;
+import br.com.spring.jms.exception.ActiveMqException;
+import br.com.spring.jms.exception.MessageNotFoundException;
+import br.com.spring.jms.model.Message;
+import br.com.spring.jms.repository.MessageRepository;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

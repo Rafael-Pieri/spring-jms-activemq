@@ -1,4 +1,4 @@
-package br.com.activemq.dto;
+package br.com.spring.jms.dto;
 
 import java.io.Serializable;
 import javax.validation.constraints.NotNull;

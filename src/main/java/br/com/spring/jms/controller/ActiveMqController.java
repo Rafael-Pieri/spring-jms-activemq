@@ -1,8 +1,8 @@
-package br.com.activemq.controller;
+package br.com.spring.jms.controller;
 
-import br.com.activemq.dto.MessageDTO;
-import br.com.activemq.model.Message;
-import br.com.activemq.service.ActiveMqService;
+import br.com.spring.jms.dto.MessageDTO;
+import br.com.spring.jms.model.Message;
+import br.com.spring.jms.service.ActiveMqService;
 import java.util.Collection;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

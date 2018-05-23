@@ -1,4 +1,4 @@
-package br.com.activemq;
+package br.com.spring.jms;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

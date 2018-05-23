@@ -1,6 +1,6 @@
-package br.com.activemq.repository;
+package br.com.spring.jms.repository;
 
-import br.com.activemq.model.Message;
+import br.com.spring.jms.model.Message;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.repository.Repository;

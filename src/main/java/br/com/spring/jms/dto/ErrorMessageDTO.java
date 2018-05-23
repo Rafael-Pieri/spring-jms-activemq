@@ -1,4 +1,4 @@
-package br.com.activemq.dto;
+package br.com.spring.jms.dto;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include;
 

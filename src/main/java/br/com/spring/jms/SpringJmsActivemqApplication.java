@@ -1,4 +1,4 @@
-package br.com.activemq;
+package br.com.spring.jms;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package br.com.activemq.exception;
+package br.com.spring.jms.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

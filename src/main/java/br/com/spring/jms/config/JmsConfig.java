@@ -1,4 +1,4 @@
-package br.com.activemq.config;
+package br.com.spring.jms.config;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.beans.factory.annotation.Value;

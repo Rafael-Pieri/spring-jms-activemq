@@ -1,8 +1,8 @@
-package br.com.activemq.handler;
+package br.com.spring.jms.handler;
 
-import br.com.activemq.dto.ErrorMessageDTO;
-import br.com.activemq.exception.ActiveMqException;
-import br.com.activemq.exception.MessageNotFoundException;
+import br.com.spring.jms.dto.ErrorMessageDTO;
+import br.com.spring.jms.exception.ActiveMqException;
+import br.com.spring.jms.exception.MessageNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.http.HttpStatus;

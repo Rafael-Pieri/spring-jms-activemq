@@ -1,4 +1,4 @@
-package br.com.activemq.model;
+package br.com.spring.jms.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.ZoneOffset;
