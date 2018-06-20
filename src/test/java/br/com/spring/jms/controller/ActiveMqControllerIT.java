@@ -49,7 +49,7 @@ public class ActiveMqControllerIT {
 
     @Test
     public void findAllAuthorsShouldReturnOk() throws Exception {
-        MessagePostDTO messagePostDTO = new MessagePostDTO("hello world!");
+        MessagePostDTO messagePostDTO = new MessagePostDTO("hello world");
 
         doNothing().when(this.activeMqService).send(messagePostDTO);
 
@@ -67,7 +67,7 @@ public class ActiveMqControllerIT {
         Long aLong = new Long(1);
         Message message = new Message();
         message.setId(aLong);
-        message.setDescription("hello world!");
+        message.setDescription("hello world");
         when(this.activeMqService.findById(aLong)).thenReturn(message);
 
 
