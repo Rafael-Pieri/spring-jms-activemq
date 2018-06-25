@@ -1,4 +1,4 @@
-package br.com.spring.jms.handler;
+package br.com.spring.jms.exception.handler;
 
 import br.com.spring.jms.dto.ErrorMessageDTO;
 import br.com.spring.jms.exception.ActiveMqException;

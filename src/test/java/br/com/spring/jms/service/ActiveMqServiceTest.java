@@ -1,12 +1,16 @@
 package br.com.spring.jms.service;
 
+import br.com.spring.jms.dto.MessagePostDTO;
 import br.com.spring.jms.model.Message;
 import br.com.spring.jms.repository.MessageRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.jms.core.JmsTemplate;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -22,24 +26,44 @@ public class ActiveMqServiceTest {
     @Mock
     private MessageRepository messageRepository;
 
+    @Mock
+    private JmsTemplate jmsTemplate;
+
+    @Captor
+    private ArgumentCaptor<Object> objectArgumentCaptor;
+
+    @Captor
+    private ArgumentCaptor<String> stringArgumentCaptor;
+
     @Test
-    public void shouldFindAllAuthors() {
-        when(messageRepository.findAll()).thenReturn(Optional.of(new ArrayList<>()));
+    public void shouldSendMessage() {
+        when(this.messageRepository.save(anyObject())).thenReturn(Optional.of(new Message()));
 
-        activeMqService.findAll();
+        doNothing().when(this.jmsTemplate).convertAndSend(stringArgumentCaptor.capture(), objectArgumentCaptor.capture());
 
-        verify(messageRepository, times(1)).findAll();
+        this.activeMqService.send(new MessagePostDTO());
+
+        verify(this.messageRepository, times(1)).save(anyObject());
+        verify(jmsTemplate, times(1)).convertAndSend(stringArgumentCaptor.capture(), objectArgumentCaptor.capture());
     }
 
     @Test
-    public void shouldFindAuthorById() {
-        final long authorId = 1L;
+    public void shouldFindAllMessages() {
+        when(this.messageRepository.findAll()).thenReturn(Optional.of(new ArrayList<>()));
 
-        when(messageRepository.findById(authorId)).thenReturn(Optional.of(new Message()));
+        this.activeMqService.findAll();
 
-        activeMqService.findById(authorId);
-
-        verify(messageRepository, times(1)).findById(authorId);
+        verify(this.messageRepository, times(1)).findAll();
     }
 
+    @Test
+    public void shouldFindMessageById() {
+        final Long authorId = 1L;
+
+        when(this.messageRepository.findById(authorId)).thenReturn(Optional.of(new Message()));
+
+        this.activeMqService.findById(authorId);
+
+        verify(this.messageRepository, times(1)).findById(authorId);
+    }
 }

@@ -27,6 +27,11 @@ public class Message {
 
     public Message() {}
 
+    public Message(Long id, String description) {
+        this.id = id;
+        this.description = description;
+    }
+
     public Message(String description) {
         this.description = description;
     }

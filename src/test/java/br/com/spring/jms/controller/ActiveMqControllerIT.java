@@ -29,6 +29,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 public class ActiveMqControllerIT {
 
+    private static final String API_PATH = "/api/message";
+    private static final String MESSAGE = "Message";
+
     private MockMvc mockMvc;
 
     @Autowired
@@ -48,13 +51,13 @@ public class ActiveMqControllerIT {
     }
 
     @Test
-    public void findAllAuthorsShouldReturnOk() throws Exception {
-        MessagePostDTO messagePostDTO = new MessagePostDTO("hello world!");
+    public void sendMessageShouldReturnCreated() throws Exception {
+        final MessagePostDTO messagePostDTO = new MessagePostDTO(MESSAGE);
 
         doNothing().when(this.activeMqService).send(messagePostDTO);
 
         this.mockMvc
-                .perform(post("/api/message").accept(MediaType.APPLICATION_JSON)
+                .perform(post(API_PATH).accept(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(messagePostDTO)))
@@ -63,39 +66,37 @@ public class ActiveMqControllerIT {
     }
 
     @Test
-    public void findAllAuthorsShouldReturnOk1() throws Exception {
-        Long aLong = new Long(1);
-        Message message = new Message();
-        message.setId(aLong);
-        message.setDescription("hello world!");
-        when(this.activeMqService.findById(aLong)).thenReturn(message);
+    public void findByIdShouldReturnOk() throws Exception {
+        final Long idMessage = 1L;
 
+        final Message message = new Message(idMessage, MESSAGE);
+
+        when(this.activeMqService.findById(idMessage)).thenReturn(message);
 
         this.mockMvc
-                .perform(get("/api/message/"+ aLong).accept(MediaType.APPLICATION_JSON)
+                .perform(get(String.format("/api/message/%s", idMessage)).accept(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.id").value(aLong))
-                .andExpect(jsonPath("$.description").value("hello world"))
+                .andExpect(jsonPath("$.id").value(idMessage))
+                .andExpect(jsonPath("$.description").value(MESSAGE))
                 .andExpect(status().isOk())
                 .andReturn();
     }
 
     @Test
-    public void findAllAuthorsShouldReturnOk2() throws Exception {
-        Long aLong = new Long(1);
-        Message message = new Message();
-        message.setId(aLong);
-        message.setDescription("hello world");
+    public void findAllShouldReturnOk() throws Exception {
+        final Long idMessage = 1L;
+
+        final Message message = new Message(idMessage, MESSAGE);
+
         when(this.activeMqService.findAll()).thenReturn(Collections.singletonList(message));
 
-
         this.mockMvc
-                .perform(get("/api/message").accept(MediaType.APPLICATION_JSON)
+                .perform(get(API_PATH).accept(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[0].id").value(aLong))
-                .andExpect(jsonPath("$.[0].description").value("hello world"))
+                .andExpect(jsonPath("$.[0].id").value(idMessage))
+                .andExpect(jsonPath("$.[0].description").value(MESSAGE))
                 .andExpect(status().isOk())
                 .andReturn();
     }

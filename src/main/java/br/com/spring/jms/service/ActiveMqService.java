@@ -24,8 +24,9 @@ public class ActiveMqService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ActiveMqService.class.getName());
 
-    private final JmsTemplate jmsTemplate;
+    private static final String MESSAGE_NOT_FOUND = "Message not found";
 
+    private final JmsTemplate jmsTemplate;
     private final MessageRepository messageRepository;
 
     @Value("${activemq.queue.name}")
@@ -39,10 +40,12 @@ public class ActiveMqService {
 
     public void send(MessagePostDTO messagePostDTO) {
         try {
-            Message message = new Message(messagePostDTO.getMessage());
-            Optional<Message> messageSaved = messageRepository.save(message);
-            MessageDTO messageDTO = new MessageDTO(messageSaved.orElseThrow(RuntimeException::new).getId());
+            final Message message = new Message(messagePostDTO.getMessage());
+            final Optional<Message> messageSaved = messageRepository.save(message);
+            final MessageDTO messageDTO = new MessageDTO(messageSaved.orElseThrow(RuntimeException::new).getId());
+
             jmsTemplate.convertAndSend(queue, messageDTO);
+
         } catch (Exception exception) {
             throw new ActiveMqException(exception.getMessage());
         }
@@ -50,27 +53,27 @@ public class ActiveMqService {
 
     @JmsListener(destination = "${activemq.queue.name}")
     public void receive(MessageDTO messageDTO) {
-        LOGGER.info("received message: {}", messageDTO);
+        LOGGER.info("Received message: {}", messageDTO);
 
-        Optional<Message> optionalMessage = messageRepository.findById(messageDTO.getId());
+        final Optional<Message> messageFound = messageRepository.findById(messageDTO.getId());
 
-        if (!optionalMessage.isPresent()) {
-            throw new MessageNotFoundException("Message not found");
+        if (!messageFound.isPresent()) {
+            throw new MessageNotFoundException(MESSAGE_NOT_FOUND);
         }
 
-        Message message = optionalMessage.get();
+        Message message = messageFound.get();
         message.setReceivedAt(ZonedDateTime.now(ZoneOffset.UTC));
         messageRepository.save(message);
     }
 
     public Message findById(Long id) {
-        Optional<Message> message = messageRepository.findById(id);
+        final Optional<Message> message = messageRepository.findById(id);
 
         if (message.isPresent()) {
             return message.get();
         }
 
-        throw new MessageNotFoundException("Message not found");
+        throw new MessageNotFoundException(MESSAGE_NOT_FOUND);
     }
 
     public Collection<Message> findAll() {

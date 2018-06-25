@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   activemq:
     image: webcenter/activemq:latest
@@ -7,13 +7,10 @@ services:
       - 61616:61616
       - 61613:61613
     environment:
-      - ACTIVEMQ_NAME=helloword.queue
+      - ACTIVEMQ_NAME=production.queue
       - ACTIVEMQ_REMOVE_DEFAULT_ACCOUNT=true
       - ACTIVEMQ_ADMIN_LOGIN=admin
       - ACTIVEMQ_ADMIN_PASSWORD=admin
-    volumes:
-      - /container_data/activemq/data:/data/activemq
-      - /container_data/activemq/log:/var/log/activemq
   mysql:
     image: mysql:latest
     environment:
@@ -21,7 +18,7 @@ services:
     ports:
       - 3306:3306
   app:
-    image: openjdk-8/springjms-activemq:latest
+    image: rafaelpieri/springjms-activemq:latest
     ports:
       - 8080:8080
     depends_on:
