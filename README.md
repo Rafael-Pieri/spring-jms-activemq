@@ -9,8 +9,6 @@ Apache ActiveMQ is the most popular and powerful open source messaging and Integ
 Apache ActiveMQ is fast, supports many Cross Language Clients and Protocols, comes with easy 
 to use Enterprise Integration Patterns and many advanced features while fully supporting JMS 1.1 and J2EE 1.4. 
 
-For more information click [here](http://activemq.apache.org/).
-
 ### How to deploy the application
 
 #### Embedded ActiveMQ
@@ -19,11 +17,7 @@ Execute the following command to deploy the application:
 ```gradle bootRun```
 
 #### ActiveMQ provided by Docker
-Follow the command below to create the application image:
-
-```docker build -t openjdk-8/springjms-activemq .```
-
-Once the application image is created, execute the following command to deploy the application:
+Follow the command below to deploy the application:
 
 ```docker-compose up```
 
