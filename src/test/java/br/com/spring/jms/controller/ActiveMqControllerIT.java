@@ -67,17 +67,17 @@ public class ActiveMqControllerIT {
 
     @Test
     public void findByIdShouldReturnOk() throws Exception {
-        final Long idMessage = 1L;
+        final Long messageId = 1L;
 
-        final Message message = new Message(idMessage, MESSAGE);
+        final Message message = new Message(messageId, MESSAGE);
 
-        when(this.activeMqService.findById(idMessage)).thenReturn(message);
+        when(this.activeMqService.findById(messageId)).thenReturn(message);
 
         this.mockMvc
-                .perform(get(String.format("/api/message/%s", idMessage)).accept(MediaType.APPLICATION_JSON)
+                .perform(get(String.format("/api/message/%s", messageId)).accept(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.id").value(idMessage))
+                .andExpect(jsonPath("$.id").value(messageId))
                 .andExpect(jsonPath("$.description").value(MESSAGE))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -85,9 +85,9 @@ public class ActiveMqControllerIT {
 
     @Test
     public void findAllShouldReturnOk() throws Exception {
-        final Long idMessage = 1L;
+        final Long messageId = 1L;
 
-        final Message message = new Message(idMessage, MESSAGE);
+        final Message message = new Message(messageId, MESSAGE);
 
         when(this.activeMqService.findAll()).thenReturn(Collections.singletonList(message));
 
@@ -95,7 +95,7 @@ public class ActiveMqControllerIT {
                 .perform(get(API_PATH).accept(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.[0].id").value(idMessage))
+                .andExpect(jsonPath("$.[0].id").value(messageId))
                 .andExpect(jsonPath("$.[0].description").value(MESSAGE))
                 .andExpect(status().isOk())
                 .andReturn();
