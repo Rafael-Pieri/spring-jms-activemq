@@ -16,10 +16,14 @@ Execute the following command to deploy the application:
 
 ```gradle bootRun```
 
+It will be available at: `http://localhost:8080`
+
 #### ActiveMQ provided by Docker
 Follow the command below to deploy the application:
 
 ```docker-compose up```
+
+It will be available at: `http://localhost:8080`
 
 ### Swagger UI
 ```http://localhost:8080/swagger-ui.html```
