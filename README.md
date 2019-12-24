@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/rafael-pieri/spring-jms-activemq.svg?branch=master)](https://travis-ci.com/rafael-pieri/spring-jms-activemq)
+
 # Spring JMS with ActiveMQ
 
 ### Overview
